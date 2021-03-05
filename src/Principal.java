@@ -178,11 +178,12 @@ public class Principal extends PApplet{
 					generar();
 				}
 				
-				if (frameCount %300 == 0) {
+				//Para cada 5 segundos se aumente la velocidad de los carbones
+				/*if (frameCount %300 == 0) {
 					for (int i = 0; i < listaCarbones.size(); i++) {
 						listaCarbones.get(i).velocidad +=1;
 					}
-				}
+				}*/
 				
 				break;
 				
@@ -242,7 +243,7 @@ public class Principal extends PApplet{
 	
 	public void generar() {
 		for(int i=0;i<MAX_INV_ROWS;i++) {
-				Carbon actual = new Carbon(i*100+250, 50);
+				Carbon actual = new Carbon(i*100+220, 50);
 				listaCarbones.add(actual);
 		}
 	}
