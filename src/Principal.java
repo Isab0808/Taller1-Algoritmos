@@ -177,6 +177,13 @@ public class Principal extends PApplet{
 				if (frameCount %120 == 0) {
 					generar();
 				}
+				
+				if (frameCount %300 == 0) {
+					for (int i = 0; i < listaCarbones.size(); i++) {
+						listaCarbones.get(i).velocidad +=1;
+					}
+				}
+				
 				break;
 				
 		case 3:
@@ -235,7 +242,7 @@ public class Principal extends PApplet{
 	
 	public void generar() {
 		for(int i=0;i<MAX_INV_ROWS;i++) {
-				Carbon actual = new Carbon(i*100, 50);
+				Carbon actual = new Carbon(i*100+250, 50);
 				listaCarbones.add(actual);
 		}
 	}

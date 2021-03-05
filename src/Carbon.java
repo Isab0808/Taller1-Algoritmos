@@ -7,14 +7,16 @@ import processing.core.PImage;
 public class Carbon extends Juego {
 	
 	private boolean validar;
+	public int velocidad;
 	
 	public Carbon(int posX,int posY) {
 		super(posX,posY);
 		this.validar = false;
+		this.velocidad = 1;
 	}
 
 	public void mover() {
-		setPosY(getPosY()+1);
+		setPosY(getPosY()+velocidad);
 	}
 	
 	public boolean validarBala(ArrayList<Bala> bala) {
