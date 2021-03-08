@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+import org.w3c.dom.ls.LSInput;
+
 import processing.core.PApplet;
 import processing.core.PImage;
 
@@ -178,12 +180,12 @@ public class Principal extends PApplet{
 					generar();
 				}
 				
-				//Para cada 5 segundos se aumente la velocidad de los carbones
-				/*if (frameCount %300 == 0) {
+				//Para cada 10 segundos se aumente la velocidad de los carbones
+				if (frameCount %600 == 0) {
 					for (int i = 0; i < listaCarbones.size(); i++) {
 						listaCarbones.get(i).velocidad +=1;
 					}
-				}*/
+				}
 				
 				break;
 				

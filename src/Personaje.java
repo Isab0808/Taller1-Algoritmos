@@ -63,6 +63,5 @@ public class Personaje extends Juego{
 		this.bala = bala;
 	}
 	
-	
 
 }
