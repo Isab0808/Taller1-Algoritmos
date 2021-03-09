@@ -13,17 +13,17 @@ public class Personaje extends Juego{
 	
 	public Personaje(int posX,int posY) {
 		super(posX,posY);
-		this.vidas = 3;
+		this.vidas = 150;
 		this.bala = new ArrayList<Bala>();
 	}
 	
 	public void mover (int dir) {
 		switch (dir) {
-		case 'a':
-		posX-= 5;
+		case 37:
+		posX-= 8;
 			break;
-		case 'd':
-		posX+= 5;
+		case 39:
+		posX+= 8;
 			break;
 		}
 	}

@@ -9,10 +9,10 @@ public class Carbon extends Juego {
 	private boolean validar;
 	public int velocidad;
 	
-	public Carbon(int posX,int posY) {
+	public Carbon(int posX,int posY, int velocidad) {
 		super(posX,posY);
 		this.validar = false;
-		this.velocidad = 1;
+		this.velocidad = velocidad;
 	}
 
 	public void mover() {
@@ -21,7 +21,7 @@ public class Carbon extends Juego {
 	
 	public boolean validarBala(ArrayList<Bala> bala) {
 		for(Bala b : bala) {
-			if((b.getPosX()>=getPosX() && b.getPosX()<=getPosX()+20)&&(b.getPosY()>=getPosY() && b.getPosY()<=getPosY()+20)) {
+			if((b.getPosX()>=getPosX() && b.getPosX()<=getPosX()+40)&&(b.getPosY()>=getPosY() && b.getPosY()<=getPosY()+52)) {
 				validar=true;
 				bala.remove(b);
 				break;

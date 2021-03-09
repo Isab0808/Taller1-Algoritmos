@@ -39,6 +39,9 @@ public class Principal extends PApplet{
 		int xBoton;
 		int yBoton;
 		
+	// Para saber la velocidad de cada nivel
+		int velocidadActual;
+		
 	//PImage del cambio de pantallas
 		PImage[] pantalla;
 		
@@ -58,6 +61,7 @@ public class Principal extends PApplet{
 		minutos = 0;
 		xBoton = 610;
 		yBoton = 760;
+		velocidadActual=1;
 		
 	// Cargando PImages del cambio de pantallas
 		pantalla = new PImage[5];
@@ -110,6 +114,8 @@ public class Principal extends PApplet{
 				image(pantalla[2], 350, 450);
 				imageMode(CORNER);
 				
+				barraVidas();
+				
 					try {
 				if(personaje.getVidas()>0) {
 					imageMode(CENTER);
@@ -127,7 +133,6 @@ public class Principal extends PApplet{
 					textSize(40);
 					text("Bienvenido", 245, 350);
 					textMode(CORNER);
-					personaje.setVidas(3);
 				}
 				
 				//Cuando el personaje dispare una bola, que esta sea eliminada
@@ -154,7 +159,7 @@ public class Principal extends PApplet{
 					//Cuando los carbones llegan al limite del lienzo se eliminen y que el personaje pierda la vida
 						if(i.getPosY()>= (personaje.getPosY()- 135)) {
 							listaCarbones.remove(i);
-							personaje.setVidas(personaje.getVidas()-1);
+							personaje.setVidas(personaje.getVidas()-5);
 						}
 						//Carbon pintar y mover
 						imageMode(CENTER);
@@ -176,7 +181,7 @@ public class Principal extends PApplet{
 				temporizador();
 				
 				//Para que se agregue cada cierto tiempo un nuevo carbon
-				if (frameCount %120 == 0) {
+				if (frameCount %(120/velocidadActual) == 0) {
 					generar();
 				}
 				
@@ -185,6 +190,7 @@ public class Principal extends PApplet{
 					for (int i = 0; i < listaCarbones.size(); i++) {
 						listaCarbones.get(i).velocidad +=1;
 					}
+					velocidadActual +=1;
 				}
 				
 				break;
@@ -216,8 +222,7 @@ public class Principal extends PApplet{
 				    textSize(25);
 				    text(minutos + ":" + segundos, 383, 343);
 				  }
-
-	}
+				}
 	}
 	
 	public void temporizador() {
@@ -245,16 +250,24 @@ public class Principal extends PApplet{
 	
 	public void generar() {
 		for(int i=0;i<MAX_INV_ROWS;i++) {
-				Carbon actual = new Carbon(i*100+220, 50);
+				Carbon actual = new Carbon(i*100+220, 50, velocidadActual);
 				listaCarbones.add(actual);
 		}
+	}
+	
+	public void barraVidas() {
+		noStroke();
+		rect(20, 18, 150, 30);
+		
+		fill(200, 3, 3);
+		rect(20, 18, personaje.getVidas(), 30);
 	}
 		
 	@Override
 	public void keyPressed() {
-		personaje.mover(key);
+		personaje.mover(keyCode);
 		
-		if(keyCode == 32) {
+		if(keyCode == UP) {
 			personaje.disparar();
 		}
 	}
@@ -298,7 +311,8 @@ public class Principal extends PApplet{
 				personaje = new Personaje(width/2, 772);	
 				puntaje = 0;
 				segundos = 0;
-				minutos = 0;}
+				minutos = 0;
+				velocidadActual=1;}
 		}
 	}
 }
